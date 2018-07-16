@@ -98,6 +98,7 @@ public class ScaleView extends View {
             distanceLength = mPathMeasure.getLength() * distance;
 
             if (distance == 0 ){
+                //第一个刻度需要增加paintWidth的一半宽度，免得边缘有间隙
                 distanceLength += mPaintWidth/2;
             }
 
@@ -116,6 +117,7 @@ public class ScaleView extends View {
                 distance = 1f;
                 distanceLength = mInsidePathMeasure.getLength() * distance;
                 mInsidePathMeasure.getPosTan(distanceLength,mInsidePos,tan);
+                //最后一个需要减去paintWidth的一半宽度，免得边缘有间隙
                 mPathMeasure.getPosTan(mPathMeasure.getLength() * distance - mPaintWidth/2, mOutsidePos , tan );
                 canvas.drawLine(mInsidePos[0],mInsidePos[1],mOutsidePos[0],mOutsidePos[1],mPaint);
                 break;
